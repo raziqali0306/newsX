@@ -17,25 +17,21 @@ export default function Home({selectedTopic, setSelectedTopic}) {
   }
 
   const searchArticles = () => {
-    let url = 'https://newsapi.org/v2/top-headlines?language=en';
+    let url = 'https://newsdata.io/api/1/news?apiKey=pub_123218ce957d35abd78a4d4ce1c40ed2d7936&language=en,fr';
     if((selectedTopic !== '' && selectedTopic.length >= 3)) {
-      url = `https://newsapi.org/v2/everything?q=${selectedTopic}&sortBy=popularity`;
+      url = `https://newsdata.io/api/1/news?q=${selectedTopic}&apiKey=pub_123218ce957d35abd78a4d4ce1c40ed2d7936&language=en,fr`;
     }
     if((selectedTopic !== '' && selectedTopic.length >= 3) || (articles.length === 0)) {
       setLoading(true);
-      axios.get(url , {
-        headers: {
-          'x-api-key': '784bf109fd7740d5a54fac55780c23a4',
-        }
-      })
+      axios.get(url)
       .then((res) => {
-        setArticles(res.data.articles);
+        setArticles(res.data.results);
       })
       .catch((err) => {
         console.log(err);
       })
       .finally(() => {
-        setLoading(false);
+          setLoading(false);
       })
     }
   }
