@@ -25,7 +25,7 @@ export default function Home({selectedTopic, setSelectedTopic}) {
       setLoading(true);
       axios.get(url , {
         headers: {
-          'x-api-key': `${process.env.REACT_APP_API_URL}`,
+          'x-api-key': '784bf109fd7740d5a54fac55780c23a4',
         }
       })
       .then((res) => {
